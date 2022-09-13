@@ -1,0 +1,65 @@
+[
+  {
+    "Rating": 4.7,
+    "Instructor": "Chirag Kalra",
+    "Title": "Fullstack React with Typescript: Become a frontend Master",
+    "Price": 29.99,
+    "Image": "https://learnify-assets.s3.amazonaws.com/Images/react-typescript.png"
+  },
+  {
+    "Rating": 4.5,
+    "Instructor": "Chirag Kalra",
+    "Title": "Fullstack Angular with a real world Application",
+    "Image": "https://learnify-assets.s3.amazonaws.com/Images/fullstack-angular.png",
+    "Price": 29.99
+  },
+  {
+    "Rating": 4.4,
+    "Instructor": "Chirag Kalra",
+    "Title": "Backend with Node JS: Write your own server",
+    "Image": "https://learnify-assets.s3.amazonaws.com/Images/backend-with-node.png",
+    "Price": 16.99
+  },
+  {
+    "Rating": 4.6,
+    "Instructor": "Chirag Kalra",
+    "Title": "Vue JS for beginners: Start your Web dev journey",
+    "Image": "https://learnify-assets.s3.amazonaws.com/Images/vue-for-beginners.png",
+    "Price": 11.99
+  },
+  {
+    "Rating": 4.9,
+    "Instructor": "Chirag Kalra",
+    "Title": "Docker and Kubernetes: Become a container expert",
+    "Image": "https://learnify-assets.s3.amazonaws.com/Images/docker-kubernetes.png",
+    "Price": 29.99
+  },
+  {
+    "Rating": 4.5,
+    "Instructor": "Chirag Kalra",
+    "Title": "Fullstack Python with Django: Become a Python expert",
+    "Image": "https://learnify-assets.s3.amazonaws.com/Images/python-django.png",
+    "Price": 34.99
+  },
+  {
+    "Rating": 4.5,
+    "Instructor": "Chirag Kalra",
+    "Title": "Introduction to Java servlets",
+    "Image": "https://learnify-assets.s3.amazonaws.com/Images/java-servlets.png",
+    "Price": 19.99
+  },
+  {
+    "Rating": 4.9,
+    "Instructor": "Chirag Kalra",
+    "Title": "Data Structures and Algorithms: Crack SDE Interviews",
+    "Image": "https://learnify-assets.s3.amazonaws.com/Images/ds-algo.png",
+    "Price": 29.99
+  },
+  {
+    "Rating": 4.8,
+    "Instructor": "Chirag Kalra",
+    "Title": "Become an AWS certified Developer",
+    "Image": "https://learnify-assets.s3.amazonaws.com/Images/aws-developer.png",
+    "Price": 24.99
+  }
+]

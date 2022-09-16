@@ -1,24 +1,30 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import Axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    Axios.get('http://localhost:5000/api/courses').then((response) => {
+      console.log(response);
+      setCourses(response.data);
+    });
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {courses.map((course: any, index) => {
+          return (
+            <li key={index}>
+              {course.id} 
+              {course.title}
+            </li>
+          )
+        })}
+      </ul>
     </div>
   );
 }

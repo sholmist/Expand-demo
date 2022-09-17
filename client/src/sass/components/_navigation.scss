@@ -1,0 +1,89 @@
+.nav-container {
+    background-color: $color-grey-light-1;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+  
+    &__left {
+      display: flex;
+      align-items: center;
+      flex: 0 0 40%;
+      font-family: 'Lato';
+  
+      & > * {
+        margin: 0 10px;
+      }
+  
+      &__logo {
+        width: 55px;
+        height: 55px;
+      }
+  
+      &__list {
+        display: flex;
+        list-style: none;
+  
+        &__item {
+          color: $color-grey-dark-1;
+          margin: 0 20px;
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+    }
+  
+    &__right {
+      display: flex;
+      align-items: center;
+      flex: 1;
+  
+      &__search {
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+  
+        &__input {
+          background-color: white;
+          border: solid 1px $color-grey-light-2;
+          padding: 0.7rem 2rem;
+          border-radius: 10px;
+          width: 100%;
+  
+          &::-webkit-input-placeholder {
+            font-weight: 100;
+            color: $color-grey-light-2;
+            font-weight: bold;
+          }
+        }
+  
+        &__input:focus + &__button {
+          background-color: $color-grey-light-1;
+        }
+  
+        &__button {
+          border: none;
+          background-color: white;
+          position: absolute;
+          right: 10px;
+  
+          &:focus {
+            outline: none;
+          }
+  
+          &:active {
+            transform: translateY(2px);
+          }
+        }
+  
+        &__icon {
+          height: 2rem;
+          width: 2rem;
+          fill: $color-grey-dark-2;
+        }
+      }
+    }
+  }

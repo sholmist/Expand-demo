@@ -17,12 +17,12 @@ namespace Infrastructure
 
     public async Task<Course> GetCourseByIdAsync(Guid id)
     {
-        return await _context.Courses.FindAsync(id);
+        return await _context.Courses.Include(c => c.Category).Include(c => c.Learnings).Include(c => c.Requirements).FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public async Task<IReadOnlyList<Course>> GetCoursesAsync()
     {
-        return await _context.Courses.ToListAsync();
+        return await _context.Courses.Include(c => c.Category).ToListAsync();
     }
 }
 }

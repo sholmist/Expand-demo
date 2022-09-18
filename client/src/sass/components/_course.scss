@@ -1,0 +1,56 @@
+.course {
+    display: flex;
+    padding: 50px 20px;
+    flex-wrap: wrap;
+    max-width: 1340px;
+    margin: 10px auto 0;
+  
+    &__header {
+      & h1 {
+        font-size: 40px;
+        font-weight: bold;
+      }
+  
+      & h2 {
+        font-size: 25px;
+        font-weight: bold;
+      }
+    }
+  
+    &__title {
+      margin-top: 5px;
+      color: black;
+      font-weight: bold;
+      text-align: left;
+      line-height: 1.5em;
+      height: 3em;
+      overflow: hidden;
+      white-space: wrap;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
+  
+    &__instructor {
+      font-size: 12px;
+      color: black;
+      margin-top: 5px;
+    }
+  
+    &__rating {
+      color: #e59819;
+      font-weight: bold;
+      margin-top: 5px;
+  
+      & span {
+        margin-left: 3px;
+      }
+    }
+    &__price {
+      color: black;
+      font-weight: bold;
+    }
+  
+    & > * {
+      margin: 20px;
+    }
+  }

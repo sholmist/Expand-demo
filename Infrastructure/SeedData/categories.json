@@ -1,0 +1,26 @@
+[
+    {
+      "Id": 1,
+      "Name": "IT & Software"
+    },
+    {
+      "Id": 2,
+      "Name": "Languages"
+    },
+    {
+      "Id": 3,
+      "Name": "Music"
+    },
+    {
+      "Id": 4,
+      "Name": "Productivity"
+    },
+    {
+      "Id": 5,
+      "Name": "Marketing"
+    },
+    {
+      "Id": 6,
+      "Name": "Business"
+    }
+  ]

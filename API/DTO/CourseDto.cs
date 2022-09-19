@@ -16,7 +16,7 @@ namespace API.DTO
         public int Students { get; set; }
         public string Language { get; set; }
         public string Level { get; set; }
-        public ICollection<LearningDto> Requirements { get; set; }
+        public ICollection<RequirementDto> Requirements { get; set; }
         public ICollection<LearningDto> Learnings { get; set; }
         public string Category { get; set; }
         public DateTime LastUpdated { get; set; }

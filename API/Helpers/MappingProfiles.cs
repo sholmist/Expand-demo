@@ -11,6 +11,8 @@ namespace API.Helpers
             CreateMap<Course, CourseDto>().ForMember(c => c.Category, opt => opt.MapFrom(src => src.Category.Name));
             CreateMap<Requirement, RequirementDto>();
             CreateMap<Learning, LearningDto>();
+            CreateMap<Category, CategoryDto>();
+            CreateMap<Category, CategoriesDto>();
         }
     }
 }

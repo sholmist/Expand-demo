@@ -5,7 +5,8 @@ namespace Entity.Specifications
 {
     public class CoursesWithCategoriesSpecification : BaseSpecification<Course>
     {
-        public CoursesWithCategoriesSpecification(CourseParams courseParams) : base(x => !courseParams.CategoryId.HasValue || x.CategoryId == courseParams.CategoryId)
+        public CoursesWithCategoriesSpecification(CourseParams courseParams) : base(x => 
+        (string.IsNullOrEmpty(courseParams.Search) || x.Title.ToLower().Contains(courseParams.Search)) && (!courseParams.CategoryId.HasValue || x.CategoryId == courseParams.CategoryId))
         {
             IncludeMethod(x => x.Category);
             ApplyPagination(courseParams.PageSize * (courseParams.PageIndex - 1), courseParams.PageSize);

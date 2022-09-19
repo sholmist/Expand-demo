@@ -42,7 +42,8 @@ namespace API
             services.AddControllers();
             services.AddDbContext<StoreContext>(x => 
             {
-                x.UseSqlite(_config.GetConnectionString("DefaultConnection"));
+                x.UseSqlite(_config.GetConnectionString("DefaultConnection"),
+                x => x.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)); //There were no warnings about this before
             });
 
             services.AddCors(opt =>

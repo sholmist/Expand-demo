@@ -32,6 +32,8 @@ namespace Entity.Specifications
         {
             IncludeMethod(c => c.Requirements);
             IncludeMethod(c => c.Learnings);
+            IncludeMethod(c => c.Category);
+            OrderByAscendingMethod(x => x.Id);
         }
     }
 }

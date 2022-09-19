@@ -13,5 +13,7 @@ namespace Entity.Interfaces
          Task<T> GetEntityWithSpec(ISpecification<T> spec);
 
         Task<IReadOnlyList<T>> ListWithSpec(ISpecification<T> spec);
+
+        Task<int> CountResultAsync(ISpecification<T> spec);
     }
 }

@@ -23,11 +23,11 @@ namespace Entity.Specifications
 
         public Expression<Func<T, object>> OrderByDescending { get; private set; }
 
-        public int Take => throw new NotImplementedException();
+        public int Take {get; private set;}
 
-        public int Skip => throw new NotImplementedException();
+        public int Skip {get; private set;}
 
-        public bool IsPagingEnabled => throw new NotImplementedException();
+        public bool IsPagingEnabled {get; private set;}
 
         protected void IncludeMethod(Expression<Func<T, object>> expression)
         {
@@ -39,6 +39,12 @@ namespace Entity.Specifications
         protected void OrderByDescendingMethod(Expression<Func<T, object>> descendingExpression)
         {
             OrderByDescending = descendingExpression;
+        }
+        protected void ApplyPagination(int skip, int take)
+        {
+            Skip = skip;
+            Take = take;
+            IsPagingEnabled = true;
         }
     }
 }

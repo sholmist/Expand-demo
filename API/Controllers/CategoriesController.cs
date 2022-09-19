@@ -4,6 +4,7 @@ using API.DTO;
 using AutoMapper;
 using Entity;
 using Entity.Interfaces;
+using Entity.Specifications;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -30,7 +31,8 @@ namespace API.Controllers
 
         public async Task<ActionResult<CategoryDto>> GetCategory(int id)
         {
-            var category = await _repository.GetByIdAsync(id);
+            var spec = new CategoriesWithCoursesSpecification(id);
+            var category = await _repository.GetEntityWithSpec(spec);
             return _mapper.Map<Category, CategoryDto>(category);
         }
     }

@@ -1,4 +1,5 @@
 import axios, {AxiosResponse} from "axios";
+import { Category } from "../models/category";
 import { Course } from "../models/course";
 import { PaginatedCourse } from "../models/paginatedCourse";
 
@@ -17,8 +18,12 @@ const Courses = {
     list: () => requests.get<PaginatedCourse>("/courses")
 };
 
+const Categories = {
+    list: () => requests.get<Category[]>("/categories")
+};
 const agent = {
-    Courses
+    Courses,
+    Categories,
 };
 
 export default agent;

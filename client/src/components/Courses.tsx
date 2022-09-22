@@ -35,9 +35,9 @@ const Courses = () => {
     const showStars = (rating: number): [] => {
         const options: any = [];
         for (let i = 1; i < rating; i++) {
-          options.push(<FaIcons.FaStar />);
+          options.push(<FaIcons.FaStar key={i} />);
           if (rating - i < 1 && rating - i > 0.3) {
-            options.push(<FaIcons.FaStarHalf />);
+            options.push(<FaIcons.FaStarHalf key={i + 1} />);
           }
         }
         return options;

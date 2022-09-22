@@ -3,9 +3,10 @@ import {Row, Col, Card} from "antd";
 import { Course } from "../models/course";
 import agent from "../actions/agent";
 import * as FaIcons from "react-icons/fa";
+import { PaginatedCourse } from "../models/paginatedCourse";
 
 const Courses = () => {
-    const [courses, setCourses] = useState<Course[]>([]);
+    const [data, setData ] = useState<PaginatedCourse>();
     const [spanVal, setSpanVal] = useState<number>();
 
     const checkWidth = (): void => {
@@ -26,7 +27,7 @@ const Courses = () => {
     useEffect(() => {
 
         agent.Courses.list().then(response => {
-            setCourses(response);
+            setData(response);
             checkWidth();
         })
     }, [])
@@ -49,7 +50,7 @@ const Courses = () => {
                 <h2>New courses picked just for you...</h2>
             </div>
             <Row gutter={[24, 32]}>
-                {courses.map((course, index) => {
+                {data && data.data.map((course, index) => {
                     return (
                         <Col key={index} className="gutter-row" span={spanVal}>
                             <Card 

@@ -5,4 +5,23 @@ export interface Course {
     instructor: string;
     image: string;
     rating: number;
+    description: string;
+    category: string;
+    language: string;
+    level: string;
+    students: number;
+    subtitle: string;
+    learnings: Learning[] | [];
+    requirements: Requirement[] | [];
+    lastUpdated: Date;
+}
+
+export interface Learning {
+    id: number;
+    name: string;
+}
+
+export interface Requirement {
+    id: number;
+    name: string;
 }

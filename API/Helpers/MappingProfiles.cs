@@ -13,6 +13,12 @@ namespace API.Helpers
             CreateMap<Learning, LearningDto>();
             CreateMap<Category, CategoryDto>();
             CreateMap<Category, CategoriesDto>();
+            CreateMap<Basket, BasketDto>();
+            CreateMap<BasketItem, BasketItemDto>()
+            .ForMember(c => c.Title, opt => opt.MapFrom(src => src.Course.Title))
+            .ForMember(c => c.Price, opt => opt.MapFrom(src => src.Course.Price))
+            .ForMember(c => c.Image, opt => opt.MapFrom(src => src.Course.Image))
+            .ForMember(c => c.Instructor, opt => opt.MapFrom(src => src.Course.Instructor));
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Entity
 {
     public class Basket
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string ClientId { get; set; }
         public List<BasketItem> Items { get; set; } = new List<BasketItem>();
 

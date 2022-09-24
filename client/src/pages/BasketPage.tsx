@@ -1,10 +1,9 @@
 import { Table } from "antd";
 import * as FaIcons from "react-icons/fa";
-import agent from "../actions/agent";
 import { CourseItem } from "../models/basket";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
-import { removeItem } from "../redux/slice/basketSlice";
+import { removeBasketItemAsync } from "../redux/slice/basketSlice";
 
 const BasketPage = () => {
   const { basket } = useAppSelector((state) => state.basket);
@@ -12,14 +11,6 @@ const BasketPage = () => {
 
   const basketCount = basket?.items.length || 0;
   const total = basket?.items.reduce((sum, item) => sum + (item.price || 0), 0);
-
-  const removeBasketItem = (courseId: string) => {
-    agent.Baskets.removeItem(courseId)
-      .then(() => dispatch(removeItem({ courseId })))
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   const columns = [
     {
@@ -48,7 +39,11 @@ const BasketPage = () => {
       title: "Action",
       key: "action",
       render: (item: CourseItem) => (
-        <div onClick={() => removeBasketItem(item.courseId)}>
+        <div
+          onClick={() =>
+            dispatch(removeBasketItemAsync({ courseId: item.courseId }))
+          }
+        >
           <FaIcons.FaTrash />
         </div>
       ),

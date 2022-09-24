@@ -23,20 +23,23 @@ export const addBasketItemAsync = createAsyncThunk<
   }
 });
 
+export const removeBasketItemAsync = createAsyncThunk<
+  void,
+  { courseId: string }
+>("basket/removeBasketItemAsync", async ({ courseId }) => {
+  try {
+    await agent.Baskets.removeItem(courseId);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 export const basketSlice = createSlice({
   name: "basket",
   initialState,
   reducers: {
     setBasket: (state, action) => {
       state.basket = action.payload;
-    },
-    removeItem: (state, action) => {
-      const { courseId } = action.payload;
-      const itemIndex = state.basket?.items.findIndex(
-        (item) => item.courseId === courseId
-      );
-      if (itemIndex === undefined || itemIndex === -1) return;
-      state.basket?.items.splice(itemIndex, 1);
     },
   },
   extraReducers: (builder) => {
@@ -50,8 +53,23 @@ export const basketSlice = createSlice({
       })
       .addCase(addBasketItemAsync.rejected, (state) => {
         state.status = "idle";
+      })
+      .addCase(removeBasketItemAsync.pending, (state) => {
+        state.status = "pending";
+      })
+      .addCase(removeBasketItemAsync.fulfilled, (state, action) => {
+        const { courseId } = action.meta.arg;
+        const itemIndex = state.basket?.items.findIndex(
+          (item) => item.courseId === courseId
+        );
+        if (itemIndex === undefined || itemIndex === -1) return;
+        state.basket?.items.splice(itemIndex, 1);
+        state.status = "idle";
+      })
+      .addCase(removeBasketItemAsync.rejected, (state) => {
+        state.status = "idle";
       });
   },
 });
 
-export const { setBasket, removeItem } = basketSlice.actions;
+export const { setBasket } = basketSlice.actions;

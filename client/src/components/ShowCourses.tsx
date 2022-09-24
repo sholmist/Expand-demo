@@ -3,13 +3,17 @@ import * as FaIcons from "react-icons/fa";
 import { Card, Col } from "antd";
 import { Course } from "../models/course";
 import { Link } from "react-router-dom";
+import agent from "../actions/agent";
+import { useStoreContext } from "../context/StoreContext";
 
 interface Props {
   course: Course;
 }
 
-const ShowCourses = ({course} : Props) => {
+const ShowCourses = ({ course }: Props) => {
   const [spanVal, setSpanVal] = useState<number>();
+
+  const { setBasket, basket } = useStoreContext();
 
   const checkWidth = (): void => {
     if (window.innerWidth > 1024) {
@@ -41,24 +45,50 @@ const ShowCourses = ({course} : Props) => {
     return options;
   };
 
+  const addToCart = (courseId: string) => {
+    agent.Baskets.addItem(courseId)
+      .then((response) => setBasket(response))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <>
       <Col className="gutter-row" span={spanVal}>
-        <Link to={`/course/${course.id}`}>    
         <Card
           hoverable
           cover={<img width="100%" alt="course-cover" src={course.image} />}
         >
-          <div className="course__title">{course.title}</div>
+          <Link to={`/course/${course.id}`}>
+            <div className="course__title">{course.title}</div>
+          </Link>
+
           <div className="course__instructor">{course.instructor}</div>
           <div className="course__rating">
             {course.rating}
             <span>{showStars(course.rating)}</span>
           </div>
-          <div className="course__price">{course.price}</div>
+          <div className="course__bottom">
+            <div className="course__bottom__price">{course.price}</div>
+
+            {basket?.items.find((item) => item.courseId === course.id) ? (
+            <Link to={"/basket"}>
+
+              <div 
+              className="course__bottom__cart"
+              >
+                Go to Cart
+                </div>
+              </Link>
+            ) : (
+              <div
+                onClick={() => addToCart(course.id)}
+                className="course__bottom__cart"
+              >
+                Add to Cart
+              </div>
+            )}
+          </div>
         </Card>
-        </Link>
-    
       </Col>
     </>
   );

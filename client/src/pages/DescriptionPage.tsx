@@ -1,11 +1,14 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import agent from "../actions/agent";
+import { StoreContext, useStoreContext } from "../context/StoreContext";
 import { Course, Learning, Requirement } from "../models/course";
 
 const DescriptionPage = () => {
   const [course, setCourse] = React.useState<Course>();
   const { id } = useParams<{ id: string }>();
+
+  const { basket, setBasket } = useStoreContext();
 
   useEffect(() => {
     //doesn't work without assertion !
@@ -14,21 +17,27 @@ const DescriptionPage = () => {
     });
   }, [id]);
 
+  const addToCart = (courseId: string) => {
+    agent.Baskets.addItem(courseId)
+      .then((response) => setBasket(response))
+      .catch((error) => console.log(error));
+  };
+
   const getParsedDate = (strDate: any) => {
-    let strSplitDate = String(strDate).split(' ');
+    let strSplitDate = String(strDate).split(" ");
     let date: any = new Date(strSplitDate[0]);
     // alert(date);
     let dd: any = date.getDate();
     let mm: any = date.getMonth() + 1; //January is 0!
-  
+
     let yyyy = date.getFullYear();
     if (dd < 10) {
-      dd = '0' + dd;
+      dd = "0" + dd;
     }
     if (mm < 10) {
-      mm = '0' + mm;
+      mm = "0" + mm;
     }
-    date = dd + '/' + mm + '/' + yyyy;
+    date = dd + "/" + mm + "/" + yyyy;
     return date.toString();
   };
 
@@ -139,6 +148,22 @@ const DescriptionPage = () => {
             </div>
           </div>
           <div className="description-page__sidebar__box__button">
+            {basket?.items.find((item) => item.courseId === course?.id) !==
+            undefined ? (
+              <Link
+                className="description-page__sidebar__box__button--cart"
+                to="/basket"
+              >
+                Go to cart
+              </Link>
+            ) : (
+              <div
+                onClick={() => addToCart(course!.id)}
+                className="description-page__sidebar__box__button--cart"
+              >
+                Add to cart
+              </div>
+            )}
             <div className="description-page__sidebar__box__button--text">
               Book now
             </div>

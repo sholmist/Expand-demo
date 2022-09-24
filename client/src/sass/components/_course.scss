@@ -45,12 +45,31 @@
         margin-left: 3px;
       }
     }
-    &__price {
-      color: black;
-      font-weight: bold;
-    }
   
     & > * {
       margin: 20px;
+    }
+    &__bottom{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      @media only screen and (max-width: $bp-small) {
+        flex-direction: column;
+      }
+
+      &__price {
+        color: black;
+        font-weight: bold;
+      }
+      
+      &__cart {
+        color: white;
+        font-weight: bold;
+        background-color: $color-primary;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
     }
   }

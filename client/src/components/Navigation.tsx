@@ -1,14 +1,19 @@
 // import exp from "constants";
 import React, {useState} from "react";
 import * as FaIcon from "react-icons/fa";
+import { Link } from "react-router-dom";
 /*TODO Placeholder change src later*/
 import Logo from "../assets/placeholder_logo.png";
+import { useStoreContext } from "../context/StoreContext";
 
 const Navigation = () => {
 
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+
+  const {basket} = useStoreContext();
+  const basketCount = basket?.items.length;
 
   return (
     <div className="nav-container">
@@ -24,14 +29,14 @@ const Navigation = () => {
                 <li className="nav-menu-items__header">
                   Navigation
                 </li>
-                <li>Categories</li>
-                <li>Courses</li>
+                <Link to="/">
+                  <li>Home</li>
+                </Link>
               </ul>
             </nav>
           </div>
           <img className="nav__left__logo" src={Logo} alt="logo" />
           <ul className="nav__left__list">
-            <div className="nav__left__list__item">Categories</div>
             <div className="nav__left__list__item">Courses</div>
           </ul>
         </div>
@@ -42,6 +47,12 @@ const Navigation = () => {
                     <FaIcon.FaSearch />
                 </button>
             </form>
+            <Link to={"/basket"}>
+              <div className="nav__right__cart">
+                  <FaIcon.FaShoppingCart />
+                  {basketCount! > 0 && (<div className="nav__right__cart__count">{basketCount}</div>)}
+              </div>
+            </Link>
         </div>
       </div>
     </div>

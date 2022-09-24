@@ -1,12 +1,59 @@
 .basket-page {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 20px;
+  max-width: 1340px;
+  margin: 10px auto 0;
+
+  &__header {
+    font-size: 3em;
+    font-weight: bold;
+  }
+
+  &__sub-header {
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  &__body {
     display: flex;
-    flex-direction: column;
-    padding: 50px 20px;
-    max-width: 1340px;
-    margin: 10px auto 0;
-  
-    &__header {
-      font-size: 3em;
-      font-weight: bold;
+
+    @media only screen and (max-width: $bp-medium) {
+      flex-direction: column;
+    }
+
+    &__table {
+      flex: 1;
+    }
+
+    &__summary {
+      display: flex;
+      flex-direction: column;
+      padding: 0 20px;
+      flex: 0 0 22%;
+
+      @media only screen and (max-width: $bp-medium) {
+        order: -1;
+        margin-bottom: 30px;
+        flex: 1;
+      }
+
+      &__total {
+        font-size: 3em;
+        font-weight: bold;
+      }
+
+      &__checkout {
+        color: white;
+        background-color: $color-primary;
+        padding: 10px 40px;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2em;
+        cursor: pointer;
+      }
     }
   }
+}

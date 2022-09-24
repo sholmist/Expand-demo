@@ -4,12 +4,16 @@ import * as FaIcon from "react-icons/fa";
 import { Link } from "react-router-dom";
 /*TODO Placeholder change src later*/
 import Logo from "../assets/placeholder_logo.png";
+import { useStoreContext } from "../context/StoreContext";
 
 const Navigation = () => {
 
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+
+  const {basket} = useStoreContext();
+  const basketCount = basket?.items.length;
 
   return (
     <div className="nav-container">
@@ -43,10 +47,12 @@ const Navigation = () => {
                     <FaIcon.FaSearch />
                 </button>
             </form>
-            <div className="nav__right__cart">
-                <FaIcon.FaShoppingCart />
-                <span className="nav__right__cart__count"></span>
-            </div>
+            <Link to={"/basket"}>
+              <div className="nav__right__cart">
+                  <FaIcon.FaShoppingCart />
+                  {basketCount! > 0 && (<div className="nav__right__cart__count">{basketCount}</div>)}
+              </div>
+            </Link>
         </div>
       </div>
     </div>

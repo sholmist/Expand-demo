@@ -5,10 +5,8 @@ import "./sass/main.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { StoreProvider } from "./context/StoreContext";
-import { configureStore } from "./redux/store/configureStore";
 import { Provider } from "react-redux";
-
-const store = configureStore();
+import { store } from "./redux/store/configureStore";
 
 ReactDOM.render(
   <Router>

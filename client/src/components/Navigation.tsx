@@ -1,6 +1,7 @@
 // import exp from "constants";
 import React, {useState} from "react";
 import * as FaIcon from "react-icons/fa";
+import { Link } from "react-router-dom";
 /*TODO Placeholder change src later*/
 import Logo from "../assets/placeholder_logo.png";
 
@@ -24,14 +25,14 @@ const Navigation = () => {
                 <li className="nav-menu-items__header">
                   Navigation
                 </li>
-                <li>Categories</li>
-                <li>Courses</li>
+                <Link to="/">
+                  <li>Home</li>
+                </Link>
               </ul>
             </nav>
           </div>
           <img className="nav__left__logo" src={Logo} alt="logo" />
           <ul className="nav__left__list">
-            <div className="nav__left__list__item">Categories</div>
             <div className="nav__left__list__item">Courses</div>
           </ul>
         </div>
@@ -42,6 +43,10 @@ const Navigation = () => {
                     <FaIcon.FaSearch />
                 </button>
             </form>
+            <div className="nav__right__cart">
+                <FaIcon.FaShoppingCart />
+                <span className="nav__right__cart__count"></span>
+            </div>
         </div>
       </div>
     </div>

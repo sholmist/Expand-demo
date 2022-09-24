@@ -59,6 +59,7 @@
     display: flex;
     align-items: center;
     flex: 1;
+    padding-right: 20px;
 
     &__search {
       display: flex;
@@ -103,6 +104,10 @@
         height: 2rem;
         width: 2rem;
         fill: $color-grey-dark-2;
+      }
+      &__cart {
+        margin-left: 20px;
+        font-size: 1.2em;
       }
     }
   }

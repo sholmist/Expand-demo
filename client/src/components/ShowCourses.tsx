@@ -4,7 +4,8 @@ import { Card, Col } from "antd";
 import { Course } from "../models/course";
 import { Link } from "react-router-dom";
 import agent from "../actions/agent";
-import { useStoreContext } from "../context/StoreContext";
+import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
+import { setBasket } from "../redux/slice/basketSlice";
 
 interface Props {
   course: Course;
@@ -13,7 +14,8 @@ interface Props {
 const ShowCourses = ({ course }: Props) => {
   const [spanVal, setSpanVal] = useState<number>();
 
-  const { setBasket, basket } = useStoreContext();
+  const { basket } = useAppSelector((state) => state.basket);
+  const dispatch = useAppDispatch();
 
   const checkWidth = (): void => {
     if (window.innerWidth > 1024) {
@@ -47,7 +49,7 @@ const ShowCourses = ({ course }: Props) => {
 
   const addToCart = (courseId: string) => {
     agent.Baskets.addItem(courseId)
-      .then((response) => setBasket(response))
+      .then((response) => dispatch(setBasket(response)))
       .catch((error) => console.log(error));
   };
 
@@ -71,13 +73,8 @@ const ShowCourses = ({ course }: Props) => {
             <div className="course__bottom__price">{course.price}</div>
 
             {basket?.items.find((item) => item.courseId === course.id) ? (
-            <Link to={"/basket"}>
-
-              <div 
-              className="course__bottom__cart"
-              >
-                Go to Cart
-                </div>
+              <Link to={"/basket"}>
+                <div className="course__bottom__cart">Go to Cart</div>
               </Link>
             ) : (
               <div

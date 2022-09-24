@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import agent from "../actions/agent";
-import { StoreContext, useStoreContext } from "../context/StoreContext";
 import { Course, Learning, Requirement } from "../models/course";
+import { setBasket } from "../redux/slice/basketSlice";
+import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 
 const DescriptionPage = () => {
   const [course, setCourse] = React.useState<Course>();
   const { id } = useParams<{ id: string }>();
 
-  const { basket, setBasket } = useStoreContext();
+  const { basket } = useAppSelector((state) => state.basket);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     //doesn't work without assertion !
@@ -19,7 +21,7 @@ const DescriptionPage = () => {
 
   const addToCart = (courseId: string) => {
     agent.Baskets.addItem(courseId)
-      .then((response) => setBasket(response))
+      .then((response) => dispatch(setBasket(response)))
       .catch((error) => console.log(error));
   };
 

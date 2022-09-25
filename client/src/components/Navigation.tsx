@@ -28,14 +28,23 @@ const Navigation = () => {
                 </li>
                 <li className="nav-menu-items__header">Navigation</li>
                 <Link to="/">
+                  {" "}
                   <li>Home</li>
+                </Link>
+                <Link to="/login">
+                  <li>Login</li>
                 </Link>
               </ul>
             </nav>
           </div>
           <img className="nav__left__logo" src={Logo} alt="logo" />
           <ul className="nav__left__list">
-            <div className="nav__left__list__item">Courses</div>
+            <Link to="/">
+              <li className="nav__left__list__item">Home</li>
+            </Link>
+            <Link to="/login">
+              <li className="nav__left__list__item">Login</li>
+            </Link>
           </ul>
         </div>
         <div className="nav__right">

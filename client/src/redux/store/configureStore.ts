@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { basketSlice } from "../slice/basketSlice";
+import { categorySlice } from "../slice/categorySlice";
 import { courseSlice } from "../slice/courseSlice";
 import { loginSlice } from "../slice/loginSlice";
 
@@ -9,6 +10,7 @@ export const store = configureStore({
     login: loginSlice.reducer,
     basket: basketSlice.reducer,
     course: courseSlice.reducer,
+    category: categorySlice.reducer,
   },
 });
 

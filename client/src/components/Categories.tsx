@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import agent from "../actions/agent";
 import { Category } from "../models/category";
 import {
   categoriesSelector,

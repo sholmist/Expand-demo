@@ -1,23 +1,23 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import agent from "../actions/agent";
-import { Course, Learning, Requirement } from "../models/course";
+import { Learning, Requirement } from "../models/course";
 import { addBasketItemAsync } from "../redux/slice/basketSlice";
+import { coursesSelector, getCourseAsync } from "../redux/slice/courseSlice";
 import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 
 const DescriptionPage = () => {
-  const [course, setCourse] = React.useState<Course>();
   const { id } = useParams<{ id: string }>();
+  const course = useAppSelector((state) =>
+    //doesn't work without assertion !
+    coursesSelector.selectById(state, id!)
+  );
 
   const { basket } = useAppSelector((state) => state.basket);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    //doesn't work without assertion !
-    agent.Courses.getById(id!).then((response) => {
-      setCourse(response);
-    });
-  }, [id]);
+    if (!course) dispatch(getCourseAsync({ courseId: id! }));
+  }, [id, dispatch, course]);
 
   const getParsedDate = (strDate: any) => {
     let strSplitDate = String(strDate).split(" ");

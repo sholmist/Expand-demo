@@ -3,10 +3,10 @@ import { Row } from "antd";
 import ShowCourses from "../components/ShowCourses";
 import { Course } from "../models/course";
 import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
-import { courseSelector, getCoursesAsync } from "../redux/slice/courseSlice";
+import { coursesSelector, getCoursesAsync } from "../redux/slice/courseSlice";
 
 const Homepage = () => {
-  const courses = useAppSelector(courseSelector.selectAll);
+  const courses = useAppSelector(coursesSelector.selectAll);
   const dispatch = useAppDispatch();
   const { coursesLoaded } = useAppSelector((state) => state.course);
 

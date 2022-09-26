@@ -42,7 +42,7 @@ namespace API.Controllers
 
             if (basket != null)
             {
-                if (userBasket == null)
+                if (userBasket != null)
                 {
                     _context.Baskets.Remove(userBasket);
                 }

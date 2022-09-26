@@ -1,37 +1,16 @@
-import { useEffect, useState } from "react";
 import { Table } from "antd";
 import * as FaIcons from "react-icons/fa";
-import agent from "../actions/agent";
-import { Basket, CourseItem } from "../models/basket";
-import { useStoreContext } from "../context/StoreContext";
+import { CourseItem } from "../models/basket";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
+import { removeBasketItemAsync } from "../redux/slice/basketSlice";
 
 const BasketPage = () => {
-  const [items, setItems] = useState<Basket | null>();
+  const { basket } = useAppSelector((state) => state.basket);
+  const dispatch = useAppDispatch();
 
-  const { basket, removeItem } = useStoreContext();
   const basketCount = basket?.items.length || 0;
   const total = basket?.items.reduce((sum, item) => sum + (item.price || 0), 0);
-
-  useEffect(() => {
-    newData(basket);
-  }, [basket]);
-
-  const newData = (items: Basket | null) => {
-    items?.items.map((item: CourseItem, index: number) =>
-      Object.assign(item, { key: index })
-    );
-
-    setItems(items);
-  };
-
-  const removeBasketItem = (courseId: string) => {
-    agent.Baskets.removeItem(courseId)
-      .then(() => removeItem(courseId))
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   const columns = [
     {
@@ -60,7 +39,11 @@ const BasketPage = () => {
       title: "Action",
       key: "action",
       render: (item: CourseItem) => (
-        <div onClick={() => removeBasketItem(item.courseId)}>
+        <div
+          onClick={() =>
+            dispatch(removeBasketItemAsync({ courseId: item.courseId }))
+          }
+        >
           <FaIcons.FaTrash />
         </div>
       ),
@@ -75,7 +58,11 @@ const BasketPage = () => {
       } in the cart`}</h2>
       <div className="basket-page__body">
         <div className="basket-page__body__table">
-          <Table columns={columns} dataSource={items?.items} />
+          <Table
+            columns={columns}
+            dataSource={basket?.items}
+            rowKey="courseId"
+          />
         </div>
         {total! > 0 && (
           <div className="basket-page__body__summary">

@@ -110,7 +110,7 @@ export const courseSlice = createSlice({
         state.status = "pending";
       })
       .addCase(getCoursesAsync.fulfilled, (state, action) => {
-        coursesAdapter.setMany(state, action.payload!.data);
+        coursesAdapter.setAll(state, action.payload!.data);
         state.status = "idle";
         state.coursesLoaded = true;
       })

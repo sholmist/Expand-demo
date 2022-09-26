@@ -79,7 +79,7 @@ const Homepage = () => {
           </Row>
 
           <div className="pagination">
-            {Pagination && (
+            {pagination && (
               <Pagination
                 defaultCurrent={pagination?.pageIndex}
                 total={pagination?.totalCount}

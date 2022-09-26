@@ -35,7 +35,7 @@ namespace Infrastructure.Services
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["TokenKey"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:TokenKey"]));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
 

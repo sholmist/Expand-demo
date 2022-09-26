@@ -1,7 +1,6 @@
 import { Button, Card, Form, Input, notification, Typography } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
-import agent from "../actions/agent";
 import { Register } from "../models/user";
 import { registerUser } from "../redux/slice/userSlice";
 import { useAppDispatch } from "../redux/store/configureStore";

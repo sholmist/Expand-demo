@@ -1,8 +1,9 @@
-import { Button, Card, Form, Input, Typography } from "antd";
+import { Button, Card, Form, Input, notification, Typography } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
-import agent from "../actions/agent";
 import { Login } from "../models/user";
+import { signInUser } from "../redux/slice/userSlice";
+import { useAppDispatch } from "../redux/store/configureStore";
 
 interface Props {
   toggleRegister: () => void;
@@ -18,18 +19,34 @@ const Signin = ({ toggleRegister }: Props) => {
 
   const { email, password } = values;
 
+  // HELP: Why wont useDispath work here?
+  const dispatch = useAppDispatch();
+  const [form] = Form.useForm();
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
   };
 
+  const resetForm = () => {
+    setValues({ ...values, email: "", password: "" });
+    form.resetFields();
+  };
+
   const submitUser = async (e: SyntheticEvent) => {
     e.preventDefault();
-    //Generated pattern  /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i
-    if (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) && password.length >= 6) {
-      const response = await agent.Users.login(values);
-      setValues({ ...values, email: "", password: "" });
-      console.log(response);
+
+    try {
+      //Generated pattern  /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i
+      if (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) && password.length >= 6) {
+        await dispatch(signInUser(values));
+      }
+      resetForm();
+    } catch (error: any) {
+      notification.error({
+        message: "Please check your email or password",
+      });
+      resetForm();
     }
   };
 
@@ -51,6 +68,8 @@ const Signin = ({ toggleRegister }: Props) => {
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           autoComplete="off"
+          onSubmitCapture={submitUser}
+          form={form}
         >
           <Form.Item
             label="Email"

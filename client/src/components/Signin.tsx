@@ -1,6 +1,7 @@
 import { Button, Card, Form, Input, notification, Typography } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Login } from "../models/user";
 import { signInUser } from "../redux/slice/userSlice";
 import { useAppDispatch } from "../redux/store/configureStore";
@@ -33,6 +34,8 @@ const Signin = ({ toggleRegister }: Props) => {
     form.resetFields();
   };
 
+  const navigate = useNavigate();
+
   const submitUser = async (e: SyntheticEvent) => {
     e.preventDefault();
 
@@ -40,6 +43,7 @@ const Signin = ({ toggleRegister }: Props) => {
       //Generated pattern  /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i
       if (email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/) && password.length >= 6) {
         await dispatch(signInUser(values));
+        navigate("/profile");
       }
       resetForm();
     } catch (error: any) {

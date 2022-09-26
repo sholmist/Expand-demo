@@ -17,6 +17,8 @@ using Entity.Interfaces;
 using API.Helpers;
 using API.Middleware;
 using API.ErrorResponse;
+using Entity;
+using Microsoft.AspNetCore.Identity;
 
 namespace API
 {
@@ -35,12 +37,17 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentityCore<User>()
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<StoreContext>();
+            services.AddAuthentication();
+            services.AddAuthorization();
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddControllers();
-            services.AddDbContext<StoreContext>(x => 
+            services.AddDbContext<StoreContext>(x =>
             {
                 x.UseSqlite(_config.GetConnectionString("DefaultConnection"),
                 x => x.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)); //There were no warnings about this before
@@ -59,9 +66,9 @@ namespace API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
 
-            services.Configure<ApiBehaviorOptions>(options => 
+            services.Configure<ApiBehaviorOptions>(options =>
             {
-                options.InvalidModelStateResponseFactory = actionContext => 
+                options.InvalidModelStateResponseFactory = actionContext =>
                 {
                     var errors = actionContext.ModelState
                         .Where(e => e.Value.Errors.Count > 0)
@@ -82,7 +89,7 @@ namespace API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseMiddleware<ExceptionMiddleware>();
-            
+
             if (env.IsDevelopment())
             {
                 app.UseSwagger();

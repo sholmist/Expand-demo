@@ -1,0 +1,34 @@
+.log-in {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-primary-dark;
+  height: 100vh;
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+}
+
+.log-in-card {
+  width: 500px;
+  text-align: center;
+  padding: 10px 0 20px;
+
+  &__toggle {
+    color: $color-primary-dark;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
+.log-in-card__intro-title.ant-typography,
+.log-in-card__intro-title.ant-typography + h3.ant-typography {
+  margin-top: 5px;
+}

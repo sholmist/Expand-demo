@@ -37,6 +37,7 @@ const Navigation = () => {
                 <li className="cancel">
                   <FaIcon.FaChevronLeft />
                 </li>
+
                 <li className="nav-menu-items__header">Navigation</li>
                 <Link to="/">
                   {" "}
@@ -48,6 +49,7 @@ const Navigation = () => {
               </ul>
             </nav>
           </div>
+
           <img className="nav__left__logo" src={Logo} alt="logo" />
           <ul className="nav__left__list">
             <Link to="/">
@@ -58,6 +60,7 @@ const Navigation = () => {
             </Link>
           </ul>
         </div>
+
         <div className="nav__right">
           <form onSubmit={onSearch} className="nav__right__search">
             <input

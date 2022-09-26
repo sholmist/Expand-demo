@@ -8,7 +8,7 @@ const UserMenu = () => {
   const navigate = useNavigate();
 
   const signout = () => {
-    dispatch(signOut);
+    dispatch(signOut());
     navigate("/");
   };
 

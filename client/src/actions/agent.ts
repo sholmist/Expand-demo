@@ -1,5 +1,5 @@
-import { Store } from "antd/lib/form/interface";
 import axios, { AxiosResponse } from "axios";
+import { Store } from "redux";
 import { Basket } from "../models/basket";
 import { Category } from "../models/category";
 import { Course } from "../models/course";

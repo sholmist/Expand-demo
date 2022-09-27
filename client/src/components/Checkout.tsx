@@ -3,7 +3,7 @@ import {
   CardExpiryElement,
   CardNumberElement,
 } from "@stripe/react-stripe-js";
-import { Card, Form } from "antd";
+import { Card, Form, Input } from "antd";
 import { ChangeEvent, useState } from "react";
 import CheckoutSummary from "./CheckoutSummary";
 
@@ -23,7 +23,7 @@ const Checkout = () => {
         <Card title="Fill your card details here">
           <Form form={form} layout="vertical">
             <Form.Item
-              name={"cardName"}
+              name="cardName"
               rules={[
                 {
                   required: true,
@@ -33,7 +33,7 @@ const Checkout = () => {
               ]}
               label="Name on card"
             >
-              <input
+              <Input
                 name="cardName"
                 placeholder="Mention the name on your card"
                 value={cardName}

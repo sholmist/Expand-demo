@@ -1,0 +1,69 @@
+.checkout {
+  display: flex;
+  max-width: 1440px;
+  margin: 0 auto;
+
+  & .ant-input::placeholder {
+    color: $color-grey-dark-1;
+  }
+
+  & h1 {
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    flex-direction: column;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 60%;
+    padding: 20px;
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px;
+    margin-top: 30px;
+
+    & h2 {
+      font-weight: bold;
+    }
+
+    &__total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+    }
+
+    .ant-btn-primary {
+      background-color: $color-primary;
+      width: 100%;
+    }
+  }
+}
+
+.inline {
+  display: flex;
+  justify-content: space-between;
+
+  @media only screen and (max-width: $bp-medium) {
+    flex-direction: column;
+  }
+
+  & > * {
+    width: 48%;
+    @media only screen and (max-width: $bp-medium) {
+      width: 100%;
+    }
+  }
+}
+
+.stripe-input {
+  border: solid 1px #d9d9d9;
+  padding: 7px;
+}

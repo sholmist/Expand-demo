@@ -12,7 +12,7 @@ const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
 export const axiosInterceptor = (store: Store) => {
   axios.interceptors.request.use((config) => {
-    const token = store.getState().user?.token;
+    const token = store.getState().user.user?.token;
     if (token) config.headers!.Authorization = `Bearer ${token}`;
     return config;
   });
@@ -55,7 +55,7 @@ const Baskets = {
 };
 
 const Payments = {
-  paymentIntent: () => requests.post<Basket>("/payments", {}),
+  paymentIntent: () => requests.post<Basket>("payments", {}),
 };
 
 const agent = {

@@ -6,6 +6,7 @@ using AutoMapper;
 using Entity;
 using Infrastructure;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -87,6 +88,32 @@ namespace API.Controllers
                 Email = user.Email,
                 Token = await _tokenService.GenerateToken(user),
             };
+        }
+
+        [Authorize]
+        [HttpPost("purchaseCourses")]
+
+        public async Task<ActionResult> AddCourses()
+        {
+            var basket = await ExtractBasket(User.Identity.Name);
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            foreach (BasketItem course in basket.Items)
+            {
+                var userCourse = new UserCourse
+                {
+                    CourseId = course.CourseId,
+                    UserId = user.Id,
+                };
+
+                _context.UserCourses.Add(userCourse);
+            }
+
+            var result = await _context.SaveChangesAsync() > 0;
+
+            if (result) return Ok();
+
+            return BadRequest(new ApiResponse(400, "Problem adding courses"));
         }
 
         private async Task<Basket> ExtractBasket(string clientId)

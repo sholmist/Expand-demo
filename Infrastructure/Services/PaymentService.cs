@@ -17,7 +17,7 @@ namespace Infrastructure.Services
 
         public async Task<PaymentIntent> PaymentIntentAsync(Basket basket)
         {
-            StripeConfiguration.ApiKey = _configuration["Stripe:ClientKey"];
+            StripeConfiguration.ApiKey = _configuration["Stripe:ClientSecret"];
 
             var service = new PaymentIntentService();
 

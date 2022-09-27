@@ -39,9 +39,9 @@ function App() {
         <Route path="/profile" element={<PrivateRoute />}>
           <Route path="/profile" element={<Dashboard />} />
         </Route>
-        <Route path="/checkout" element={<PrivateRoute />}>
-          <Route path="/checkout" element={<CheckoutPage />} />
-        </Route>
+        {/* <Route path="/checkout" element={<PrivateRoute />}> */}
+        <Route path="/checkout" element={<CheckoutPage />} />
+        {/* </Route> */}
       </Routes>
     </>
   );

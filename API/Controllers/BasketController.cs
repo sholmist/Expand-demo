@@ -25,7 +25,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<BasketDto>> GetBasket()
         {
-            var basket = await ExtractBasket();
+            var basket = await ExtractBasket(GetClientId());
 
             if (basket == null)
             {
@@ -41,7 +41,7 @@ namespace API.Controllers
 
         public async Task<ActionResult<BasketDto>> AddItemToBasket(Guid courseId)
         {
-            Basket basket = await ExtractBasket();
+            Basket basket = await ExtractBasket(GetClientId());
 
             if (basket == null)
             {
@@ -70,7 +70,7 @@ namespace API.Controllers
 
         public async Task<ActionResult<Basket>> RemoveItemFromBasket(Guid courseId)
         {
-            Basket basket = await ExtractBasket();
+            Basket basket = await ExtractBasket(GetClientId());
 
             if (basket == null)
             {
@@ -91,13 +91,18 @@ namespace API.Controllers
 
         private Basket CreateBasket()
         {
-            var clientId = Guid.NewGuid().ToString();
-            var options = new CookieOptions
+            var clientId = User.Identity?.Name;
+            if (string.IsNullOrEmpty(clientId))
             {
-                IsEssential = true,
-                Expires = DateTime.Now.AddDays(10)
-            };
-            Response.Cookies.Append("clientId", clientId, options);
+                clientId = Guid.NewGuid().ToString();
+                var options = new CookieOptions
+                {
+                    IsEssential = true,
+                    Expires = DateTime.Now.AddDays(10)
+                };
+
+                Response.Cookies.Append("clientId", clientId, options);
+            }
 
             var basket = new Basket
             {
@@ -109,13 +114,24 @@ namespace API.Controllers
             return basket;
         }
 
-        private async Task<Basket> ExtractBasket()
+        private async Task<Basket> ExtractBasket(string clientId)
         {
+            if (string.IsNullOrEmpty(clientId))
+            {
+                Response.Cookies.Delete("clientId");
+                return null;
+            }
+
             return await _context.Baskets
             .Include(b => b.Items)
             .ThenInclude(i => i.Course)
             .OrderBy(b => b.Id)
-            .FirstOrDefaultAsync(x => x.ClientId == Request.Cookies["clientId"]);
+            .FirstOrDefaultAsync(x => x.ClientId == clientId);
+        }
+
+        private string GetClientId()
+        {
+            return User.Identity?.Name ?? Request.Cookies["clientId"];
         }
     }
 }

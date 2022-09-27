@@ -9,27 +9,18 @@ import CategoryPage from "./pages/CategoryPage";
 import DescriptionPage from "./pages/DescriptionPage";
 import DetailPage from "./pages/DetailPage";
 import BasketPage from "./pages/BasketPage";
-import agent from "./actions/agent";
 import { useAppDispatch } from "./redux/store/configureStore";
-import { setBasket } from "./redux/slice/basketSlice";
+import { fetchBasketAsync } from "./redux/slice/basketSlice";
+import Dashboard from "./pages/Dashboard";
+import { getUser } from "./redux/slice/userSlice";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const dispatch = useAppDispatch();
 
-  function getCookie(name: string) {
-    return (
-      document.cookie.match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)")?.pop() ||
-      ""
-    );
-  }
-
   useEffect(() => {
-    const clientId = getCookie("clientId");
-    if (clientId) {
-      agent.Baskets.get()
-        .then((response) => dispatch(setBasket(response)))
-        .catch((error) => console.log(error));
-    }
+    dispatch(fetchBasketAsync());
+    dispatch(getUser());
   }, [dispatch]);
 
   return (
@@ -43,6 +34,9 @@ function App() {
         <Route path="/login" element={<Loginpage />} />
         <Route path="/detail" element={<DetailPage />} />
         <Route path="/basket" element={<BasketPage />} />
+        <Route path="/profile" element={<PrivateRoute />}>
+          <Route path="/profile" element={<Dashboard />} />
+        </Route>
       </Routes>
     </>
   );

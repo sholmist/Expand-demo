@@ -2,19 +2,68 @@ import {
   CardCvcElement,
   CardExpiryElement,
   CardNumberElement,
+  useElements,
+  useStripe,
 } from "@stripe/react-stripe-js";
-import { Card, Form, Input } from "antd";
-import { ChangeEvent, useState } from "react";
+import { Card, Form, Input, notification } from "antd";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { removeBasket } from "../redux/slice/basketSlice";
+import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 import CheckoutSummary from "./CheckoutSummary";
 
 const Checkout = () => {
   const [cardName, setCardName] = useState<string>("");
+
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const { basket } = useAppSelector((state) => state.basket);
+  const dispatch = useAppDispatch();
+
+  const navigate = useNavigate();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCardName(e.target.value);
   };
 
   const [form] = Form.useForm();
+
+  const handlePayment = async (event: SyntheticEvent) => {
+    event.preventDefault();
+    if (!stripe || !elements) return;
+
+    try {
+      const cardElement = elements.getElement(CardNumberElement);
+      const paymentResult = await stripe.confirmCardPayment(
+        basket?.clientSecret!,
+        {
+          payment_method: {
+            card: cardElement!,
+            billing_details: {
+              name: cardName,
+            },
+          },
+        }
+      );
+
+      if (paymentResult.paymentIntent?.status === "succeeded") {
+        notification.success({
+          message: "Payment Successful!",
+        });
+        dispatch(removeBasket());
+        setTimeout(() => {
+          navigate("/profile");
+        }, 1000);
+      } else {
+        notification.error({
+          message: paymentResult.error?.message!,
+        });
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="checkout">

@@ -16,6 +16,8 @@ const ShowCourses = ({ course }: Props) => {
   const { basket } = useAppSelector((state) => state.basket);
   const dispatch = useAppDispatch();
 
+  const { userCourses } = useAppSelector((state) => state.user);
+
   const checkWidth = (): void => {
     if (window.innerWidth > 1024) {
       setSpanVal(6);
@@ -65,7 +67,10 @@ const ShowCourses = ({ course }: Props) => {
           <div className="course__bottom">
             <div className="course__bottom__price">{course.price}</div>
 
-            {basket?.items.find((item) => item.courseId === course.id) ? (
+            {userCourses?.find((item) => item.id === course.id) !==
+            undefined ? (
+              <div className="course__bottom_cart">Go to course</div>
+            ) : basket?.items.find((item) => item.courseId === course.id) ? (
               <Link to={"/basket"}>
                 <div className="course__bottom__cart">Go to Cart</div>
               </Link>

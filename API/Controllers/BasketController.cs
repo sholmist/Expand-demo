@@ -91,7 +91,7 @@ namespace API.Controllers
 
         [HttpDelete("clear")]
 
-        public async Task<ActionResult<Basket>> ClearBasket()
+        public async Task<ActionResult<Basket>> RemoveBasket()
         {
             Basket basket = await ExtractBasket(GetClientId());
 

@@ -89,6 +89,29 @@ namespace API.Controllers
             return Ok();
         }
 
+        [HttpDelete("clear")]
+
+        public async Task<ActionResult<Basket>> RemoveBasket()
+        {
+            Basket basket = await ExtractBasket(GetClientId());
+
+            if (basket == null)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+
+            basket.ClearBasket();
+
+            var result = await _context.SaveChangesAsync() > 0;
+
+            if (!result)
+            {
+                return BadRequest(new ApiResponse(400, "Problem clearing basket"));
+            }
+
+            return Ok();
+        }
+
         private Basket CreateBasket()
         {
             var clientId = User.Identity?.Name;

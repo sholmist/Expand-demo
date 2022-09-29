@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { Store } from "redux";
 import { Basket } from "../models/basket";
 import { Category } from "../models/category";
 import { Course } from "../models/course";
@@ -8,6 +9,14 @@ import { Login, Register, User } from "../models/user";
 axios.defaults.baseURL = "http://localhost:5000/api";
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
+
+export const axiosInterceptor = (store: Store) => {
+  axios.interceptors.request.use((config) => {
+    const token = store.getState().user.user?.token;
+    if (token) config.headers!.Authorization = `Bearer ${token}`;
+    return config;
+  });
+};
 
 axios.defaults.withCredentials = true;
 
@@ -24,6 +33,8 @@ const Users = {
   login: (values: Login) => requests.post<User>("/users/login", values),
   register: (values: Register) =>
     requests.post<User>("/users/register", values),
+  addCourse: () => requests.post("/users/purchaseCourses", {}),
+  currentUser: () => requests.get<User>("/users/currentUser"),
 };
 
 const Courses = {
@@ -43,6 +54,11 @@ const Baskets = {
     requests.post<Basket>(`/basket?courseId=${courseId}`, {}),
   removeItem: (courseId: string) =>
     requests.del(`/basket?courseId=${courseId}`),
+  clear: () => requests.del("/basket/clear"),
+};
+
+const Payments = {
+  paymentIntent: () => requests.post<Basket>("payments", {}),
 };
 
 const agent = {
@@ -50,6 +66,7 @@ const agent = {
   Categories,
   Baskets,
   Users,
+  Payments,
 };
 
 export default agent;

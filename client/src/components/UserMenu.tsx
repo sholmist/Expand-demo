@@ -1,17 +1,17 @@
 import { Dropdown, Menu } from "antd";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { removeBasket } from "../redux/slice/basketSlice";
 import { signOut } from "../redux/slice/userSlice";
 
 const UserMenu = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const signout = () => {
     dispatch(signOut());
     dispatch(removeBasket());
-    navigate("/");
+    history.push("/");
   };
 
   const menu = (

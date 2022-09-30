@@ -1,14 +1,35 @@
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { ComponentType } from "react";
+import {
+  Redirect,
+  Route,
+  RouteComponentProps,
+  RouteProps,
+} from "react-router-dom";
 import { useAppSelector } from "../redux/store/configureStore";
 
-const PrivateRoute = () => {
-  const { user } = useAppSelector((state) => state.user);
-  const location = useLocation();
+interface Props extends RouteProps {
+  component: ComponentType<RouteComponentProps<any>> | ComponentType<any>;
+}
 
-  return user ? (
-    <Outlet />
-  ) : (
-    <Navigate to="/login" state={{ from: location }} />
+const PrivateRoute = ({ component: Component, ...rest }: Props) => {
+  const { user } = useAppSelector((state) => state.user);
+
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        user ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+            }}
+          />
+        )
+      }
+    />
   );
 };
+
 export default PrivateRoute;

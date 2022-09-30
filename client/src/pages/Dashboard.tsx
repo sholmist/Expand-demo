@@ -18,8 +18,9 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="dashboard__header">
         <h1>My courses</h1>
-        <div className="dashboard__courses">
-          <Row gutter={[48, 32]} />
+      </div>
+      <div className="dashboard__courses">
+        <Row gutter={[48, 32]}>
           {userCourses.length > 0 ? (
             userCourses.map((course: Course, index: number) => {
               return <ShowCourses key={index} course={course} />;
@@ -27,7 +28,7 @@ const Dashboard = () => {
           ) : (
             <h1>You have not bought any courses</h1>
           )}
-        </div>
+        </Row>
       </div>
     </div>
   );

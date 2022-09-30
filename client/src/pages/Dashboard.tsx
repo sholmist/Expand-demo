@@ -11,7 +11,7 @@ const Dashboard = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchCurrentUser);
+    dispatch(fetchCurrentUser());
   }, [dispatch]);
 
   return (

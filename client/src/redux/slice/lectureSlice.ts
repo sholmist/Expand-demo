@@ -1,6 +1,6 @@
 import {
-  createEntityAdapter,
   createAsyncThunk,
+  createEntityAdapter,
   createSlice,
 } from "@reduxjs/toolkit";
 import agent from "../../actions/agent";
@@ -21,8 +21,8 @@ export const getLecturesAsync = createAsyncThunk<
 >("lecture/getLecturesAsync", async ({ courseId }, thunkAPI) => {
   try {
     return await agent.Lectures.getLectures(courseId);
-  } catch (error: any) {
-    return thunkAPI.rejectWithValue({ error: error });
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue({ error: err });
   }
 });
 
@@ -30,12 +30,12 @@ export const setCurrentLectureAsync = createAsyncThunk<
   void,
   { lectureId: number; courseId: string }
 >(
-  "lecture/setCurrentLectureAsync",
+  "lecture/setCurrentLecturesAsync",
   async ({ lectureId, courseId }, thunkAPI) => {
     try {
       await agent.Lectures.setCurrentLecture({ lectureId, courseId });
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue({ error: error });
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue({ error: err });
     }
   }
 );
@@ -57,7 +57,7 @@ export const lectureSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getLecturesAsync.pending, (state, action) => {
+    builder.addCase(getLecturesAsync.pending, (state) => {
       state.lectureLoaded = false;
     });
     builder.addCase(getLecturesAsync.fulfilled, (state, action) => {

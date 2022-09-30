@@ -16,6 +16,7 @@ import Loading from "./components/Loading";
 import DescriptionPage from "./pages/DescriptionPage";
 import Homepage from "./pages/Homepage";
 import CheckoutPage from "./pages/CheckoutPage";
+import CoursePage from "./pages/CoursePage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -47,8 +48,13 @@ function App() {
         <Route exact path="/category/:id" component={CategoryPage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/detail" component={DetailPage} />
-        <Route exact path="/checkout" component={CheckoutPage} />
+        <PrivateRoute exact path="/checkout" component={CheckoutPage} />
         <PrivateRoute exact path="/profile" component={Dashboard} />
+        <PrivateRoute
+          exact
+          path="/learn/:course/:lecture"
+          component={CoursePage}
+        />
       </Switch>
     </>
   );

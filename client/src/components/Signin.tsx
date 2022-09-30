@@ -1,4 +1,4 @@
-import { Button, Card, Form, Input, notification, Typography } from "antd";
+import { Button, Card, Form, Input, Typography } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -47,9 +47,7 @@ const Signin = ({ toggleRegister }: Props) => {
       }
       resetForm();
     } catch (error: any) {
-      notification.error({
-        message: "Please check your email or password",
-      });
+      console.log(error);
       resetForm();
     }
   };

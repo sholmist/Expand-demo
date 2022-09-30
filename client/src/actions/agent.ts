@@ -5,6 +5,7 @@ import { Category } from "../models/category";
 import { Course } from "../models/course";
 import { PaginatedCourse } from "../models/paginatedCourse";
 import { Login, Register, User } from "../models/user";
+import { Lecture } from "../models/lecture";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
@@ -61,12 +62,20 @@ const Payments = {
   paymentIntent: () => requests.post<Basket>("payments", {}),
 };
 
+const Lectures = {
+  getLectures: (courseId: string) =>
+    requests.get<Lecture>(`/lectures/${courseId}`),
+  setCurrentLecture: (values: { lectureId: number; courseId: string }) =>
+    requests.put(`/lectures/setCurrentLecture`, values),
+};
+
 const agent = {
   Courses,
   Categories,
   Baskets,
   Users,
   Payments,
+  Lectures,
 };
 
 export default agent;

@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { basketSlice } from "../slice/basketSlice";
 import { categorySlice } from "../slice/categorySlice";
 import { courseSlice } from "../slice/courseSlice";
+import { lectureSlice } from "../slice/lectureSlice";
 import { loginSlice } from "../slice/loginSlice";
 import { userSlice } from "../slice/userSlice";
 
@@ -13,6 +14,7 @@ export const store = configureStore({
     course: courseSlice.reducer,
     category: categorySlice.reducer,
     user: userSlice.reducer,
+    lecture: lectureSlice.reducer,
   },
 });
 

@@ -69,7 +69,7 @@ const ShowCourses = ({ course }: Props) => {
 
             {userCourses?.find((item) => item.id === course.id) !==
             undefined ? (
-              <div className="course__bottom_cart">Go to course</div>
+              <div className="course__bottom__cart">Go to course</div>
             ) : basket?.items.find((item) => item.courseId === course.id) ? (
               <Link to={"/basket"}>
                 <div className="course__bottom__cart">Go to Cart</div>

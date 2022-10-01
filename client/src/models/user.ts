@@ -6,6 +6,7 @@ export interface User {
   token: string;
   basket?: Basket;
   courses?: Course[];
+  roles?: string[];
 }
 
 export interface Login {

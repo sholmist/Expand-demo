@@ -1,0 +1,86 @@
+.lecture {
+  font-size: 1.6rem;
+  display: flex;
+  position: relative;
+  display: flex;
+
+  @media only screen and (max-width: $bp-medium) {
+    flex-direction: column;
+  }
+
+  &__sidebar {
+    display: flex;
+    flex: 0 0 18%;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: scroll;
+
+    @media only screen and (max-width: $bp-medium) {
+      flex: 0;
+      order: 2;
+    }
+
+    &__icon {
+      margin-right: 15px;
+    }
+
+    &__course {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      align-items: center;
+      font-size: 1.6rem;
+      border: $border-dark;
+      padding: 2rem;
+      background-color: $color-primary;
+      color: white;
+    }
+
+    &__list {
+      &__item {
+        display: flex;
+        justify-content: center;
+        font-size: 1rem;
+        align-items: center;
+        background-color: #000;
+        color: white;
+        border: $border-dark;
+        height: 60px;
+        width: 100%;
+        cursor: pointer;
+
+        @media only screen and (max-width: $bp-small) {
+          overflow: scroll;
+        }
+
+        &__active {
+          display: flex;
+          justify-content: center;
+          font-size: 1rem;
+          align-items: center;
+          background-color: white;
+          color: black;
+          border: $border-dark;
+          height: 60px;
+          width: 100%;
+        }
+      }
+    }
+
+    &__section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      font-weight: bold;
+    }
+  }
+
+  &__video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50px;
+    width: 80vw;
+  }
+}

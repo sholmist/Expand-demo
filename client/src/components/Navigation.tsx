@@ -2,7 +2,7 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from "react";
 import * as FaIcon from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 /*TODO Placeholder change src later*/
 import Logo from "../assets/placeholder_logo.png";
 import { setCourseParams } from "../redux/slice/courseSlice";
@@ -21,11 +21,11 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const basketCount = basket?.items.length;
 
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const signout = () => {
     dispatch(signOut);
-    navigate("/");
+    history.push("/");
   };
 
   const handeleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -51,18 +51,16 @@ const Navigation = () => {
 
                 <li className="nav-menu-items__header">Navigation</li>
                 <Link to="/">
-                  {" "}
-                  <li>Home</li>{" "}
+                  <li>Home</li>
                 </Link>
                 {user ? (
                   <>
                     <Link to="/profile">
                       <li>Profile</li>
-                    </Link>{" "}
+                    </Link>
                     <div onClick={signout}>
-                      {" "}
-                      <li>Logout</li>{" "}
-                    </div>{" "}
+                      <li>Logout</li>
+                    </div>
                   </>
                 ) : (
                   <Link to="/login">

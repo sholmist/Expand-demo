@@ -1,25 +1,25 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
-import Homepage from "./pages/Homepage";
-import Loginpage from "./pages/Login";
+import { Route, Switch } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import "antd/dist/antd.css";
-import Category from "./components/Categories";
-import CategoryPage from "./pages/CategoryPage";
-import DescriptionPage from "./pages/DescriptionPage";
+import Login from "./pages/Login";
 import DetailPage from "./pages/DetailPage";
+import Categories from "./components/Categories";
+import CategoryPage from "./pages/CategoryPage";
 import BasketPage from "./pages/BasketPage";
 import { useAppDispatch } from "./redux/store/configureStore";
 import { fetchBasketAsync } from "./redux/slice/basketSlice";
 import Dashboard from "./pages/Dashboard";
 import { fetchCurrentUser } from "./redux/slice/userSlice";
 import PrivateRoute from "./components/PrivateRoute";
-import CheckoutPage from "./pages/CheckoutPage";
 import Loading from "./components/Loading";
+import DescriptionPage from "./pages/DescriptionPage";
+import Homepage from "./pages/Homepage";
+import CheckoutPage from "./pages/CheckoutPage";
+import CoursePage from "./pages/CoursePage";
 
 function App() {
   const dispatch = useAppDispatch();
-
   const [loading, setLoading] = useState(true);
 
   const appInit = useCallback(async () => {
@@ -35,31 +35,28 @@ function App() {
     appInit().then(() => setLoading(false));
   }, [appInit]);
 
-  if (loading) {
-    return <Loading />;
-  }
+  if (loading) return <Loading />;
 
   return (
     <>
       <Navigation />
-      <Category />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/category/:id" element={<CategoryPage />} />
-        <Route path="/course/:id" element={<DescriptionPage />} />
-        <Route path="/login" element={<Loginpage />} />
-        <Route path="/detail" element={<DetailPage />} />
-        <Route path="/basket" element={<BasketPage />} />
-
-        <Route path="/profile" element={<PrivateRoute />}>
-          <Route path="/profile" element={<Dashboard />} />
-        </Route>
-        <Route path="/checkout" element={<PrivateRoute />}>
-          <Route path="/checkout" element={<CheckoutPage />} />
-        </Route>
-      </Routes>
+      <Route exact path="/" component={Categories} />
+      <Switch>
+        <Route exact path="/" component={Homepage} />
+        <Route exact path="/course/:id" component={DescriptionPage} />
+        <Route exact path="/basket" component={BasketPage} />
+        <Route exact path="/category/:id" component={CategoryPage} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/detail" component={DetailPage} />
+        <PrivateRoute exact path="/checkout" component={CheckoutPage} />
+        <PrivateRoute exact path="/profile" component={Dashboard} />
+        <PrivateRoute
+          exact
+          path="/learn/:course/:lecture"
+          component={CoursePage}
+        />
+      </Switch>
     </>
   );
 }
-
 export default App;

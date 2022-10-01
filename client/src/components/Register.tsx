@@ -1,7 +1,7 @@
 import { Button, Card, Form, Input, notification, Typography } from "antd";
 import { Content } from "antd/lib/layout/layout";
 import { ChangeEvent, SyntheticEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Register } from "../models/user";
 import { registerUser } from "../redux/slice/userSlice";
 import { useAppDispatch } from "../redux/store/configureStore";
@@ -34,7 +34,7 @@ const RegisterComponent = ({ toggleRegister }: Props) => {
     form.resetFields();
   };
 
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const submitUser = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -47,13 +47,17 @@ const RegisterComponent = ({ toggleRegister }: Props) => {
         username.length >= 5
       ) {
         await dispatch(registerUser(values));
-        navigate("/profile");
+        history.push("/profile");
       }
       resetForm();
-    } catch (error: any) {
-      notification.error({
-        message: "Please check your credentials",
-      });
+    } catch (err: any) {
+      if (err.error) {
+        for (const val of err.error) {
+          notification.error({
+            message: val,
+          });
+        }
+      }
       resetForm();
     }
   };

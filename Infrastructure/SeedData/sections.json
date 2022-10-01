@@ -1,0 +1,227 @@
+[
+  {
+    "Id": 1,
+    "Name": "Section 1",
+    "CourseId": "D56DE15C-3672-4849-BF0A-5D4A5F6258A5"
+  },
+  {
+    "Id": 2,
+    "Name": "Section 1",
+    "CourseId": "5B347C34-782B-45F9-ACCC-DDF69FEA8AF2"
+  },
+  {
+    "Id": 3,
+    "Name": "Section 1",
+    "CourseId": "05FC1EFB-83E5-4042-B494-FD30D759AD1C"
+  },
+  {
+    "Id": 4,
+    "Name": "Section 1",
+    "CourseId": "41E0EB01-5715-4376-912C-49FE04357CC5"
+  },
+  {
+    "Id": 5,
+    "Name": "Section 1",
+    "CourseId": "2BBC0917-2BAE-4CC7-9675-95D0AAC03188"
+  },
+  {
+    "Id": 6,
+    "Name": "Section 1",
+    "CourseId": "C7E9B43A-DCAD-4993-BE11-3960EE7BE39D"
+  },
+  {
+    "Id": 7,
+    "Name": "Section 1",
+    "CourseId": "A8A4121F-CA35-4B26-8599-2170731369DF"
+  },
+  {
+    "Id": 8,
+    "Name": "Section 1",
+    "CourseId": "6D0D3733-9E2E-4339-B507-56673EF7D7A8"
+  },
+  {
+    "Id": 9,
+    "Name": "Section 1",
+    "CourseId": "8E3E7399-D478-4A45-A2A5-B13B8C286A68"
+  },
+  {
+    "Id": 10,
+    "Name": "Section 2",
+    "CourseId": "D56DE15C-3672-4849-BF0A-5D4A5F6258A5"
+  },
+  {
+    "Id": 11,
+    "Name": "Section 2",
+    "CourseId": "5B347C34-782B-45F9-ACCC-DDF69FEA8AF2"
+  },
+  {
+    "Id": 12,
+    "Name": "Section 2",
+    "CourseId": "05FC1EFB-83E5-4042-B494-FD30D759AD1C"
+  },
+  {
+    "Id": 13,
+    "Name": "Section 2",
+    "CourseId": "41E0EB01-5715-4376-912C-49FE04357CC5"
+  },
+  {
+    "Id": 14,
+    "Name": "Section 2",
+    "CourseId": "2BBC0917-2BAE-4CC7-9675-95D0AAC03188"
+  },
+  {
+    "Id": 15,
+    "Name": "Section 2",
+    "CourseId": "C7E9B43A-DCAD-4993-BE11-3960EE7BE39D"
+  },
+  {
+    "Id": 16,
+    "Name": "Section 2",
+    "CourseId": "A8A4121F-CA35-4B26-8599-2170731369DF"
+  },
+  {
+    "Id": 17,
+    "Name": "Section 2",
+    "CourseId": "6D0D3733-9E2E-4339-B507-56673EF7D7A8"
+  },
+  {
+    "Id": 18,
+    "Name": "Section 2",
+    "CourseId": "8E3E7399-D478-4A45-A2A5-B13B8C286A68"
+  },
+  {
+    "Id": 19,
+    "Name": "Section 3",
+    "CourseId": "D56DE15C-3672-4849-BF0A-5D4A5F6258A5"
+  },
+  {
+    "Id": 20,
+    "Name": "Section 3",
+    "CourseId": "5B347C34-782B-45F9-ACCC-DDF69FEA8AF2"
+  },
+  {
+    "Id": 21,
+    "Name": "Section 3",
+    "CourseId": "05FC1EFB-83E5-4042-B494-FD30D759AD1C"
+  },
+  {
+    "Id": 22,
+    "Name": "Section 3",
+    "CourseId": "41E0EB01-5715-4376-912C-49FE04357CC5"
+  },
+  {
+    "Id": 23,
+    "Name": "Section 3",
+    "CourseId": "2BBC0917-2BAE-4CC7-9675-95D0AAC03188"
+  },
+  {
+    "Id": 24,
+    "Name": "Section 3",
+    "CourseId": "C7E9B43A-DCAD-4993-BE11-3960EE7BE39D"
+  },
+  {
+    "Id": 25,
+    "Name": "Section 3",
+    "CourseId": "A8A4121F-CA35-4B26-8599-2170731369DF"
+  },
+  {
+    "Id": 26,
+    "Name": "Section 3",
+    "CourseId": "6D0D3733-9E2E-4339-B507-56673EF7D7A8"
+  },
+  {
+    "Id": 27,
+    "Name": "Section 3",
+    "CourseId": "8E3E7399-D478-4A45-A2A5-B13B8C286A68"
+  },
+  {
+    "Id": 28,
+    "Name": "Section 4",
+    "CourseId": "D56DE15C-3672-4849-BF0A-5D4A5F6258A5"
+  },
+  {
+    "Id": 29,
+    "Name": "Section 4",
+    "CourseId": "5B347C34-782B-45F9-ACCC-DDF69FEA8AF2"
+  },
+  {
+    "Id": 30,
+    "Name": "Section 4",
+    "CourseId": "05FC1EFB-83E5-4042-B494-FD30D759AD1C"
+  },
+  {
+    "Id": 31,
+    "Name": "Section 4",
+    "CourseId": "41E0EB01-5715-4376-912C-49FE04357CC5"
+  },
+  {
+    "Id": 32,
+    "Name": "Section 4",
+    "CourseId": "2BBC0917-2BAE-4CC7-9675-95D0AAC03188"
+  },
+  {
+    "Id": 33,
+    "Name": "Section 4",
+    "CourseId": "C7E9B43A-DCAD-4993-BE11-3960EE7BE39D"
+  },
+  {
+    "Id": 34,
+    "Name": "Section 4",
+    "CourseId": "A8A4121F-CA35-4B26-8599-2170731369DF"
+  },
+  {
+    "Id": 35,
+    "Name": "Section 4",
+    "CourseId": "6D0D3733-9E2E-4339-B507-56673EF7D7A8"
+  },
+  {
+    "Id": 36,
+    "Name": "Section 4",
+    "CourseId": "8E3E7399-D478-4A45-A2A5-B13B8C286A68"
+  },
+  {
+    "Id": 37,
+    "Name": "Section 5",
+    "CourseId": "D56DE15C-3672-4849-BF0A-5D4A5F6258A5"
+  },
+  {
+    "Id": 38,
+    "Name": "Section 5",
+    "CourseId": "5B347C34-782B-45F9-ACCC-DDF69FEA8AF2"
+  },
+  {
+    "Id": 39,
+    "Name": "Section 5",
+    "CourseId": "05FC1EFB-83E5-4042-B494-FD30D759AD1C"
+  },
+  {
+    "Id": 40,
+    "Name": "Section 5",
+    "CourseId": "41E0EB01-5715-4376-912C-49FE04357CC5"
+  },
+  {
+    "Id": 41,
+    "Name": "Section 5",
+    "CourseId": "2BBC0917-2BAE-4CC7-9675-95D0AAC03188"
+  },
+  {
+    "Id": 42,
+    "Name": "Section 5",
+    "CourseId": "C7E9B43A-DCAD-4993-BE11-3960EE7BE39D"
+  },
+  {
+    "Id": 43,
+    "Name": "Section 5",
+    "CourseId": "A8A4121F-CA35-4B26-8599-2170731369DF"
+  },
+  {
+    "Id": 44,
+    "Name": "Section 5",
+    "CourseId": "6D0D3733-9E2E-4339-B507-56673EF7D7A8"
+  },
+  {
+    "Id": 45,
+    "Name": "Section 5",
+    "CourseId": "8E3E7399-D478-4A45-A2A5-B13B8C286A68"
+  }
+]

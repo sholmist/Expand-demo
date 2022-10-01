@@ -1,10 +1,12 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import { Store } from "redux";
 import { Basket } from "../models/basket";
 import { Category } from "../models/category";
 import { Course } from "../models/course";
 import { PaginatedCourse } from "../models/paginatedCourse";
 import { Login, Register, User } from "../models/user";
+import { Lecture } from "../models/lecture";
+import { notification } from "antd";
 
 axios.defaults.baseURL = "http://localhost:5000/api";
 
@@ -18,7 +20,49 @@ export const axiosInterceptor = (store: Store) => {
   });
 };
 
-axios.defaults.withCredentials = true;
+axios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error: AxiosError) => {
+    const { data, status }: AxiosResponse = error.response!;
+
+    switch (status) {
+      case 400:
+        if (data.errors) {
+          const validationErrors: string[] = [];
+          for (const key in data.errors) {
+            if (data.errors[key]) {
+              validationErrors.push(data.errors[key]);
+            }
+          }
+          throw validationErrors.flat();
+        }
+        notification.error({
+          message: data.errorMessage,
+        });
+        break;
+      case 401:
+        notification.error({
+          message: data.errorMessage,
+        });
+        break;
+      case 404:
+        notification.error({
+          message: data.errorMessage,
+        });
+        break;
+      case 500:
+        notification.error({
+          message: "Server Error, Please try again later",
+        });
+        break;
+      default:
+        break;
+    }
+    return Promise.reject(error.response);
+  }
+);
 
 const requests = {
   get: <T>(url: string, params?: URLSearchParams) =>
@@ -61,12 +105,20 @@ const Payments = {
   paymentIntent: () => requests.post<Basket>("payments", {}),
 };
 
+const Lectures = {
+  getLectures: (courseId: string) =>
+    requests.get<Lecture>(`/lectures/${courseId}`),
+  setCurrentLecture: (values: { lectureId: number; courseId: string }) =>
+    requests.put(`/lectures/setCurrentLecture`, values),
+};
+
 const agent = {
   Courses,
   Categories,
   Baskets,
   Users,
   Payments,
+  Lectures,
 };
 
 export default agent;

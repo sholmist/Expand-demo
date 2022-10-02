@@ -9,7 +9,7 @@ namespace Entity
         public float Price { get; set; }
         public string Instructor { get; set; }
         public decimal Rating { get; set; }
-        public string Image { get; set; } = "https://www.dropbox.com/s/h47uh9j52qdjx3s/expand-logo.png?dl=1";
+        public string Image { get; set; } = "https://www.dropbox.com/s/9sg3y4fgnloozbw/expand-logo.png?dl=1";
         public string SubTitle { get; set; }
         public string Description { get; set; }
         public int Students { get; set; }

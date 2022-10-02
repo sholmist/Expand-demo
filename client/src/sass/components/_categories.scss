@@ -1,28 +1,28 @@
 .categories {
-    background-color: white;
-    height: 50px;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    overflow: hidden;
-    padding: 0 10px;
-    box-shadow: $shadow-light;
-  
-    @media only screen and (max-width: $bp-small) {
-      display: none;
-    }
-  
-    & > * {
-      margin: 10px 20px;
-    }
-  
-    &__name {
-      color: black;
-      font-weight: bold;
-  
-      &:hover {
-        text-decoration: underline;      
-        cursor: pointer;
+  background-color: $color-primary;
+  height: 50px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 10px;
+  box-shadow: $shadow-light;
+
+  @media only screen and (max-width: $bp-small) {
+    display: none;
+  }
+
+  & > * {
+    margin: 10px 20px;
+  }
+
+  &__name {
+    color: white;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
 }

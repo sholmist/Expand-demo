@@ -1,5 +1,5 @@
 //Font
-$font-primary: 'Lato';
+$font-primary: "Lato";
 
 // RESPONSIVE BREAKPOINTS
 $bp-largest: 75em; // 1200px
@@ -17,8 +17,8 @@ $color-grey-dark-2: #6d5d4b;
 $color-primary: #261e7d;
 $color-primary-dark: #0e0545;
 
-$color-secondary-light: #ffcc00;
-$color-secondary-dark: #eb4d55;
+$color-secondary-light: rgb(100, 213, 190);
+$color-secondary-dark: #3737c8ff;
 
 // BORDER
 $border: 1px solid #f4f2f2;
@@ -36,4 +36,3 @@ html {
 body {
   font-family: $font-primary, sans-serif;
 }
-

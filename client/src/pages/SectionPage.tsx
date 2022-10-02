@@ -82,6 +82,22 @@ const SectionPage = ({ match }: RouteComponentProps<any>) => {
 
   const publishSection = async () => {
     try {
+      let emptyFields = false;
+      if (lectureForm.length === 0) {
+        notification.warning({
+          message: "Please add a lecture",
+        });
+        emptyFields = true;
+      }
+      if (sectionName === "") {
+        notification.warning({
+          message: "Please add a section name",
+        });
+        emptyFields = true;
+      }
+
+      if (emptyFields) return;
+
       const response = await agent.Lectures.create({
         courseId: match.params.course,
         sectionName: sectionName,

@@ -63,5 +63,24 @@ namespace API.Controllers
 
             return BadRequest(new ApiResponse(400, "Problem Creating Course"));
         }
+
+        [Authorize(Roles = "Instructor")]
+        [HttpPost("publish/{courseId}")]
+
+        public async Task<ActionResult<string>> PublishCourse(Guid courseId)
+        {
+            var course = await _context.Courses.FindAsync(courseId);
+
+            if (course == null) return NotFound(new ApiResponse(404));
+
+            course.Published = true;
+
+            var result = await _context.SaveChangesAsync() > 0;
+
+            if (result) return "Course Published Successfully";
+
+            return BadRequest(new ApiResponse(400, "Problem Publishing Course"));
+        }
+
     }
 }

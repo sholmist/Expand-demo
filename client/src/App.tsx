@@ -17,6 +17,7 @@ import DescriptionPage from "./pages/DescriptionPage";
 import Homepage from "./pages/Homepage";
 import CheckoutPage from "./pages/CheckoutPage";
 import CoursePage from "./pages/CoursePage";
+import InstructorPage from "./pages/InstructorPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -55,6 +56,7 @@ function App() {
           path="/learn/:course/:lecture"
           component={CoursePage}
         />
+        <PrivateRoute exact path="/instructor" component={InstructorPage} />
       </Switch>
     </>
   );

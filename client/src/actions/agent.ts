@@ -80,6 +80,7 @@ const Users = {
   addCourse: () => requests.post("/users/purchaseCourses", {}),
   currentUser: () => requests.get<User>("/users/currentUser"),
   addRole: () => requests.post("/users/addRole", {}),
+  unpublishedCourses: () => requests.get<Course[]>("/users/unpublishedCourses"),
 };
 
 const Courses = {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Card, Col, Pagination, Radio, Row } from "antd";
 import ShowCourses from "../components/ShowCourses";
 import { Course } from "../models/course";
@@ -21,6 +21,9 @@ const sortOptions = [
 const Homepage = () => {
   const courses = useAppSelector(coursesSelector.selectAll);
   const dispatch = useAppDispatch();
+
+  const [spanVal, setSpanVal] = useState<number>();
+
   const { coursesLoaded, courseParams, pagination } = useAppSelector(
     (state) => state.course
   );
@@ -32,6 +35,25 @@ const Homepage = () => {
   useEffect(() => {
     if (!coursesLoaded) dispatch(getCoursesAsync());
   }, [dispatch, coursesLoaded]);
+
+  const checkWidth = (): void => {
+    if (window.innerWidth > 1200) {
+      setSpanVal(4);
+    } else if (window.innerWidth < 1200 && window.innerWidth > 1024) {
+      setSpanVal(15);
+    } else {
+      setSpanVal(20);
+    }
+  };
+
+  useLayoutEffect(() => {
+    window.addEventListener("resize", checkWidth);
+    return () => window.addEventListener("resize", checkWidth);
+  }, []);
+
+  useEffect(() => {
+    checkWidth();
+  }, []);
 
   const categories = useAppSelector(categoriesSelector.selectAll);
 
@@ -50,7 +72,7 @@ const Homepage = () => {
         <h2>New courses picked just for you...</h2>
       </div>
       <Row gutter={[24, 32]}>
-        <Col span={4}>
+        <Col span={spanVal}>
           <Card title="Sorting Options">
             <Radio.Group
               value={courseParams.sort}

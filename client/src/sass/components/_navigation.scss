@@ -51,6 +51,12 @@
         margin: 0 20px;
         font-size: 18px;
         font-weight: 600;
+
+        &:hover {
+          background-color: $color-grey-light-1;
+          color: $color-primary;
+          cursor: pointer;
+        }
       }
     }
   }
@@ -97,6 +103,7 @@
 
         &:active {
           transform: translateY(2px);
+          color: $color-secondary-light;
         }
       }
 
@@ -111,7 +118,7 @@
       font-size: 1.2em;
       position: relative;
       padding: 5px 0;
-      color: $color-grey-dark-1;
+      color: $color-primary;
 
       &__count {
         position: absolute;
@@ -174,6 +181,6 @@
   list-style: none;
 }
 
-.dropdown {
-  cursor: pointer;
+.nav-button:hover {
+  color: $color-primary;
 }

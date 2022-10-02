@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Learning, Requirement } from "../models/course";
+import { Course, Learning, Requirement } from "../models/course";
 import { addBasketItemAsync } from "../redux/slice/basketSlice";
 import { coursesSelector, getCourseAsync } from "../redux/slice/courseSlice";
 import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
@@ -8,11 +8,12 @@ import { useAppDispatch, useAppSelector } from "../redux/store/configureStore";
 const DescriptionPage = () => {
   const { id } = useParams<{ id: string }>();
   const course = useAppSelector((state) =>
-    //doesn't work without assertion !
     coursesSelector.selectById(state, id!)
   );
 
   const { basket } = useAppSelector((state) => state.basket);
+  const { userCourses } = useAppSelector((state) => state.user);
+  const { currentLecture } = useAppSelector((state) => state.lecture);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -144,8 +145,16 @@ const DescriptionPage = () => {
             </div>
           </div>
           <div className="description-page__sidebar__box__button">
-            {basket?.items.find((item) => item.courseId === course?.id) !==
+            {userCourses?.find((item: Course) => item.id === course?.id) !==
             undefined ? (
+              <Link
+                to={`/learn/${course?.id}/${currentLecture}`}
+                className="description-page__sidebar__box__button--cart"
+              >
+                Go to Course
+              </Link>
+            ) : basket?.items.find((item) => item.courseId === course?.id) !==
+              undefined ? (
               <Link
                 className="description-page__sidebar__box__button--cart"
                 to="/basket"

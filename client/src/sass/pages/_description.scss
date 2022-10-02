@@ -285,6 +285,10 @@
 
         &--cart {
           background-color: $color-primary;
+          &:hover {
+            background-color: $color-secondary-light;
+            color: white;
+          }
         }
       }
 

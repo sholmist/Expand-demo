@@ -1,14 +1,12 @@
-// import exp from "constants";
 import React, { ChangeEvent, SyntheticEvent, useState } from "react";
 import * as FaIcon from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-/*TODO Placeholder change src later*/
-import Logo from "../assets/placeholder_logo.png";
 import { setCourseParams } from "../redux/slice/courseSlice";
 import { signOut } from "../redux/slice/userSlice";
 import { useAppSelector } from "../redux/store/configureStore";
 import UserMenu from "./UserMenu";
+import Logo from "../assets/expand-logo.png";
 
 const Navigation = () => {
   const [sidebar, setSidebar] = useState(false);

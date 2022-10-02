@@ -82,5 +82,6 @@ namespace API.Controllers
             return BadRequest(new ApiResponse(400, "Problem Publishing Course"));
         }
 
+        //TODO: Get request to get all courses for a specific instructor
     }
 }

@@ -158,6 +158,15 @@ namespace API.Controllers
             return courses;
         }
 
+        [Authorize]
+        [HttpGet("publishedCourses")]
+
+        public List<Course> publishedCourses()
+        {
+            var courses = _context.Courses.Where(x => x.Instructor == User.Identity.Name && x.Published == true).ToList();
+            return courses;
+        }
+
         private async Task<Basket> ExtractBasket(string clientId)
         {
             if (string.IsNullOrEmpty(clientId))

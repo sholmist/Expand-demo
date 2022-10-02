@@ -1,0 +1,39 @@
+.instructor {
+  display: flex;
+  padding: 50px;
+  justify-content: space-between;
+  max-width: 1240px;
+  margin: 0 auto;
+
+  &__left {
+    &__header {
+      font-size: 2rem;
+      font-weight: bold;
+      flex: 0 0 70%;
+    }
+
+    &__courses {
+      padding: 30px;
+      display: flex;
+      flex-wrap: wrap;
+
+      @media only screen and (max-width: $bp-medium) {
+        flex-direction: column;
+      }
+
+      & > * {
+        margin: 10px 20px;
+
+        @media only screen and (max-width: $bp-medium) {
+          margin: 20px 10px;
+        }
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+  }
+}

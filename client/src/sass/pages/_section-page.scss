@@ -1,0 +1,41 @@
+.section-page {
+  display: flex;
+  flex-direction: column;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 50px;
+
+  &__lectures {
+    display: flex;
+    margin: 10px 0;
+    width: 100%;
+
+    & > * {
+      margin: 0 2px;
+    }
+
+    &__item {
+      width: 100%;
+    }
+  }
+}
+
+.input-section {
+  width: 100%;
+  border: solid 1px $color-grey-dark-2;
+  padding: 3px;
+}
+
+.input-lecture {
+  width: 100%;
+  padding: 3px;
+}
+
+.publish-section {
+  margin: 20px 0;
+  width: 200px;
+}
+
+.invalid-feedback {
+  color: red;
+}

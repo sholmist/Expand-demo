@@ -6,13 +6,13 @@
     "Title": "Fullstack React with Typescript: Become a frontend Master",
     "Price": 29.99,
     "Image": "https://learnify-assets.s3.amazonaws.com/Images/react-typescript.png",
-    "CategoryId": 1,
     "SubTitle": "Learn with fun",
     "Description": "This is the description placeholder",
     "Students": 20,
     "Level": "Beginner",
     "Language": "English",
-    "CategoryId": 1
+    "CategoryId": 1,
+    "Published": true
   },
   {
     "Id": "2BBC0917-2BAE-4CC7-9675-95D0AAC03188",
@@ -26,7 +26,8 @@
     "Description": "This is the description placeholder",
     "Students": 20,
     "Language": "English",
-    "CategoryId": 1
+    "CategoryId": 1,
+    "Published": true
   },
   {
     "Id": "41E0EB01-5715-4376-912C-49FE04357CC5",
@@ -40,7 +41,8 @@
     "Students": 20,
     "Level": "Beginner",
     "Language": "English",
-    "CategoryId": 1
+    "CategoryId": 1,
+    "Published": true
   },
   {
     "Id": "05FC1EFB-83E5-4042-B494-FD30D759AD1C",
@@ -54,7 +56,8 @@
     "Students": 20,
     "Language": "English",
     "Level": "Beginner",
-    "CategoryId": 1
+    "CategoryId": 1,
+    "Published": true
   },
   {
     "Id": "5B347C34-782B-45F9-ACCC-DDF69FEA8AF2",
@@ -68,7 +71,8 @@
     "Students": 20,
     "Language": "English",
     "Level": "Beginner",
-    "CategoryId": 1
+    "CategoryId": 1,
+    "Published": true
   },
   {
     "Id": "D56DE15C-3672-4849-BF0A-5D4A5F6258A5",
@@ -82,7 +86,8 @@
     "Students": 20,
     "Language": "English",
     "Level": "Beginner",
-    "CategoryId": 1
+    "CategoryId": 1,
+    "Published": true
   },
   {
     "Id": "A8A4121F-CA35-4B26-8599-2170731369DF",
@@ -96,7 +101,8 @@
     "Students": 20,
     "Language": "English",
     "Level": "Beginner",
-    "CategoryId": 1
+    "CategoryId": 1,
+    "Published": true
   },
   {
     "Id": "6D0D3733-9E2E-4339-B507-56673EF7D7A8",
@@ -110,7 +116,8 @@
     "Students": 20,
     "Language": "English",
     "Level": "Beginner",
-    "CategoryId": 1
+    "CategoryId": 1,
+    "Published": true
   },
   {
     "Id": "8E3E7399-D478-4A45-A2A5-B13B8C286A68",
@@ -124,6 +131,7 @@
     "Students": 20,
     "Language": "English",
     "Level": "Beginner",
-    "CategoryId": 1
+    "CategoryId": 1,
+    "Published": true
   }
 ]

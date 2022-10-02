@@ -9,7 +9,7 @@ namespace Entity
         public float Price { get; set; }
         public string Instructor { get; set; }
         public decimal Rating { get; set; }
-        public string Image { get; set; }
+        public string Image { get; set; } = "https://learnify-assets.s3.amazonaws.com/Images/learnify.png";
         public string SubTitle { get; set; }
         public string Description { get; set; }
         public int Students { get; set; }
@@ -20,6 +20,7 @@ namespace Entity
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public DateTime LastUpdated { get; set; } = DateTime.Now;
+        public bool Published { get; set; }
         public ICollection<UserCourse> UserCourses { get; set; }
         public ICollection<Section> Sections { get; set; }
     }

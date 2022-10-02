@@ -69,5 +69,39 @@ namespace API.Controllers
             return BadRequest(new ApiResponse(400, "Problem updating current lecture"));
 
         }
+
+        [Authorize(Roles = "Instructor")]
+        [HttpPost]
+
+        public async Task<ActionResult<string>> AddSection(AddSectionDto sectionDto)
+        {
+            var course = await _context.Courses.FindAsync(sectionDto.CourseId);
+
+            var section = new Section
+            {
+                Course = course,
+                Name = sectionDto.SectionName
+            };
+
+            _context.Sections.Add(section);
+
+            foreach (var item in sectionDto.Lectures)
+            {
+                var lecture = new Lecture
+                {
+                    Title = item.Title,
+                    Section = section,
+                    Url = item.Url
+                };
+
+                _context.Lectures.Add(lecture);
+            }
+
+            var response = await _context.SaveChangesAsync() > 0;
+
+            if (response) return "Section added successfully";
+
+            return BadRequest(new ApiResponse(400, "Problem adding section"));
+        }
     }
 }

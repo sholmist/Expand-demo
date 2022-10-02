@@ -138,6 +138,16 @@ namespace API.Controllers
             };
         }
 
+        [Authorize]
+        [HttpPost("addRole")]
+
+        public async Task<IActionResult> addRole()
+        {
+            var user = await _userManager.FindByNameAsync(User.Identity.Name);
+            await _userManager.AddToRoleAsync(user, "Instructor");
+            return Ok();
+        }
+
         private async Task<Basket> ExtractBasket(string clientId)
         {
             if (string.IsNullOrEmpty(clientId))

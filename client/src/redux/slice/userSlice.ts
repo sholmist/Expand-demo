@@ -76,6 +76,17 @@ export const registerUser = createAsyncThunk<User, Register>(
   }
 );
 
+export const addRole = createAsyncThunk<void>(
+  "user/addRole",
+  async (_, thunkAPI) => {
+    try {
+      await agent.Users.addRole();
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue({ error: error });
+    }
+  }
+);
+
 export const userSlice = createSlice({
   name: "user",
   initialState,

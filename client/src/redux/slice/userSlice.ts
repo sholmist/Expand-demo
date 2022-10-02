@@ -9,12 +9,14 @@ interface UserState {
   user: User | null;
   userCourses: Course[];
   unpublishedCourses: Course[];
+  publishedCourses: Course[];
 }
 
 const initialState: UserState = {
   user: null,
   userCourses: [],
   unpublishedCourses: [],
+  publishedCourses: [],
 };
 
 export const fetchCurrentUser = createAsyncThunk<User>(
@@ -99,6 +101,16 @@ export const getUnpublishedCourses = createAsyncThunk<Course[]>(
     }
   }
 );
+export const getPublishedCourses = createAsyncThunk<Course[]>(
+  "user/getPublishedCourses",
+  async (_, thunkAPI) => {
+    try {
+      return await agent.Users.publishedCourses();
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue({ error: error });
+    }
+  }
+);
 
 export const userSlice = createSlice({
   name: "user",
@@ -131,6 +143,9 @@ export const userSlice = createSlice({
     });
     builder.addCase(getUnpublishedCourses.fulfilled, (state, action) => {
       state.unpublishedCourses = action.payload;
+    });
+    builder.addCase(getPublishedCourses.fulfilled, (state, action) => {
+      state.publishedCourses = action.payload;
     });
     builder.addMatcher(
       isAnyOf(

@@ -29,13 +29,13 @@ const InstructorPage = () => {
   return (
     <div className="instructor">
       <div className="instructor__top">
-        <div className="instructor__left">
-          <div className="instructor__left__header">
+        <div className="instructor__top__left">
+          <div className="instructor__top__left__header">
             {unpublishedCourses.length > 0
               ? "My unpublished courses"
               : "Create new course"}
           </div>
-          <div className="instructor__left__courses">
+          <div className="instructor__top__left__courses">
             {unpublishedCourses.map((course: Course, index: number) => {
               return (
                 <Link key={index} to={`${course.id}/lectures`}>
@@ -51,7 +51,7 @@ const InstructorPage = () => {
             }, [])}
           </div>
         </div>
-        <div className="instructor__right">
+        <div className="instructor__top__right">
           <Button onClick={makeCourse} type="primary">
             New course
           </Button>
@@ -59,25 +59,27 @@ const InstructorPage = () => {
       </div>
 
       <div className="instructor__bottom">
-        <div className="instructor__left__header">
-          {publishedCourses.length > 0
-            ? "My published courses"
-            : "Create new course"}
-        </div>
-        <div className="instructor__left__courses">
-          {publishedCourses.map((course: Course, index: number) => {
-            return (
-              <Link key={index} to={`course/${course.id}`}>
-                <Card
-                  hoverable
-                  style={{ width: 240 }}
-                  cover={<img src={course.image} alt={course.title} />}
-                >
-                  <Meta title={course.title} description={course.subtitle} />
-                </Card>
-              </Link>
-            );
-          }, [])}
+        <div className="instructor__bottom__container">
+          <div className="instructor__bottom__header">
+            {publishedCourses.length > 0
+              ? "My published courses"
+              : "Create new course"}
+          </div>
+          <div className="instructor__bottom__courses">
+            {publishedCourses.map((course: Course, index: number) => {
+              return (
+                <Link key={index} to={`course/${course.id}`}>
+                  <Card
+                    hoverable
+                    style={{ width: 240 }}
+                    cover={<img src={course.image} alt={course.title} />}
+                  >
+                    <Meta title={course.title} description={course.subtitle} />
+                  </Card>
+                </Link>
+              );
+            }, [])}
+          </div>
         </div>
       </div>
     </div>

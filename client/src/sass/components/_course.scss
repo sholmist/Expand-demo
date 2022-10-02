@@ -70,6 +70,10 @@
       padding: 10px 15px;
       border-radius: 5px;
       font-size: 1rem;
+      &:hover {
+        background-color: $color-secondary-light;
+        color: $color-primary;
+      }
     }
   }
 }

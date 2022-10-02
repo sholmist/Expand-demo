@@ -67,7 +67,7 @@ const InstructorPage = () => {
         <div className="instructor__left__courses">
           {publishedCourses.map((course: Course, index: number) => {
             return (
-              <Link key={index} to={`${course.id}/lectures`}>
+              <Link key={index} to={`course/${course.id}`}>
                 <Card
                   hoverable
                   style={{ width: 240 }}
